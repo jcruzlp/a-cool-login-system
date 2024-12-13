@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 320px;
+            padding: 30px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
+            color: #333;
+        }
+
+        .language-select {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .language-select select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            background: #4CAF50;
+            border: none;
+            color: #fff;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        .login-container .link {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-container .link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-container .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="language-select">
+            <select id="language-select">
+                <option value="es" selected>Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <h1 id="title-text">Iniciar Sesión</h1>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label id="user-label" for="username">Usuario</label>
+                <input type="text" id="username" name="username" required autocomplete="off"/>
+            </div>
+            <div class="form-group">
+                <label id="pass-label" for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required/>
+            </div>
+            <button class="btn" type="submit" id="login-button">Entrar</button>
+        </form>
+        <div class="link">
+            <a id="register-link" href="/registro">¿No tienes una cuenta? Regístrate</a>
+        </div>
+    </div>
+
+    <script>
+        const languageSelect = document.getElementById('language-select');
+        const titleText = document.getElementById('title-text');
+        const userLabel = document.getElementById('user-label');
+        const passLabel = document.getElementById('pass-label');
+        const loginButton = document.getElementById('login-button');
+        const registerLink = document.getElementById('register-link');
+
+        const translations = {
+            es: {
+                title: "Iniciar Sesión",
+                user: "Usuario",
+                pass: "Contraseña",
+                login: "Entrar",
+                register: "¿No tienes una cuenta? Regístrate"
+            },
+            en: {
+                title: "Log In",
+                user: "Username",
+                pass: "Password",
+                login: "Login",
+                register: "Don't have an account? Register"
+            }
+        };
+
+        languageSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            titleText.textContent = translations[lang].title;
+            userLabel.textContent = translations[lang].user;
+            passLabel.textContent = translations[lang].pass;
+            loginButton.textContent = translations[lang].login;
+            registerLink.textContent = translations[lang].register;
+        });
+    </script>
+</body>
+</html>
